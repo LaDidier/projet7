@@ -78,3 +78,15 @@ with st.form("my_form"):
  
 with tab2:
     st.image('../image/test.png')
+    positif = solvable['predict_proba'][1]*100
+    negatif = -solvable['predict_proba'][0]*100
+    pretok =  solvable['predict'][0]
+    if pretok >0:
+        accord = "OUI"
+    else:
+        accord = "NON"
+
+    col1, col2 , col3= st.columns(3)
+    col1.metric("Accord de pret",accord)
+    col2.metric("Positif", "{0:.2f}%".format(positif), "{0:.2f}%".format(positif))
+    col3.metric("Negatif", "{0:.2f}%".format(negatif), "{0:.2f}%".format(negatif))
